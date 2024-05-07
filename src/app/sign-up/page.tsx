@@ -11,16 +11,19 @@ export default function App() {
     phone: number;
     email: string;
     password: string;
+    confirmPassword: string
   }
-
-  
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    watch
   } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const password = watch("password", "");
+
+
 
   return (
     
@@ -46,7 +49,7 @@ export default function App() {
           required: "This field is required *",
         })}
       />
-      {errors.name && (
+      {errors.company && (
         <p className="text-start mb-5 text-red-600">{errors.company.message}</p>
       )}
 
@@ -58,7 +61,7 @@ export default function App() {
           required: "This field is required *",
         })}
       />
-      {errors.name && (
+      {errors.phone && (
         <p className="text-start mb-5 text-red-600">{errors.phone.message}</p>
       )}
 
@@ -77,7 +80,7 @@ export default function App() {
         <p className="text-start mb-5 text-red-600">{errors.email.message}</p>
       )}
 
-      <input
+<input
         type="password"
         className="rounded p-2 mb-5"
         placeholder="Password"
@@ -85,6 +88,20 @@ export default function App() {
       />
       {errors.password?.type === "required" && (
         <p className="text-start mb-5 text-red-600">Password is required *</p>
+      )}
+
+      <input
+        type="password"
+        className="rounded p-2 mb-5"
+        placeholder="Confirm Password"
+        {...register("confirmPassword", {
+          required: true,
+          validate: value =>
+            value === password || "The passwords do not match"
+        })}
+      />
+      {errors.confirmPassword && (
+        <p className="text-start mb-5 text-red-600">{errors.confirmPassword.message}</p>
       )}
 
       <button
