@@ -14,7 +14,9 @@ export default function App() {
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data);
+  };
 
   return (
     <form
@@ -56,7 +58,7 @@ export default function App() {
       <p>
         Not registered yet? Click to{" "}
         <Link
-          className="text-violet-800 font-semibold underline-offset-4"
+          className="text-violet-800 font-semibold"
           href="/sign-up"
         >
           Sign Up
