@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function RegisterForm() {
+  
   const { toast } = useToast();
 
   interface RegisterForm {
