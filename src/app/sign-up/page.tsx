@@ -1,7 +1,7 @@
 import SignUpForm from "../components/SignUpForm";
 import Image from "next/image";
 
-function SighUp() {
+function SignUp() {
   return (
 
       <div className="h-lvh w-100 flex flex-col justify-start items-start">
@@ -15,4 +15,4 @@ function SighUp() {
   );
 }
 
-export default SighUp;
+export default SignUp;
