@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Log In",
   description: "Coreproof Factory LLC",
 };
 
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-    {children}
+        {children}
     </>
   );
 }

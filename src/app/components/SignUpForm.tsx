@@ -19,7 +19,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-lvh w-100">
+    <>
       <form
         className="flex flex-col text-center justify-center bg-white sign-up-form"
         onSubmit={handleSubmit(onSubmit)}
@@ -90,14 +90,7 @@ export default function App() {
         <button className="p-4 mb-10 text-white" type="submit">
           LOG IN
         </button>
-
-        <p className="bg-white">
-          Don’t have an account?{" "}
-          <Link className="font-semibold bg-white sign-up-link" href="/sign-up">
-            SIGN UP
-          </Link>
-        </p>
       </form>
-    </div>
+    </>
   );
 }
