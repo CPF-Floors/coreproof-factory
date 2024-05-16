@@ -20,12 +20,13 @@ export default function App() {
 
   return (
     <form
-      className="flex flex-col text-center justify-center"
+      className="flex flex-col text-center justify-center absolute bg-white bottom-0 right-0 left-0 log-in-form"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <label className="bg-white text-start my-2" htmlFor="">EMAIL</label>
       <input
-        className="rounded p-2 mb-5"
-        placeholder="Enter your e-mail"
+        className="p-5 mb-5"
+        placeholder="example@mail.com"
         {...register("email", {
           required: "This field is required",
           pattern: {
@@ -35,33 +36,34 @@ export default function App() {
         })}
       />
       {errors.email && (
-        <p className="text-start mb-5 text-red-600">{errors.email.message}</p>
+        <p className="text-start mb-5 text-red-600 bg-white">{errors.email.message}</p>
       )}
-
+      <label className="bg-white text-start my-2" htmlFor="">PASSWORD</label>
       <input
         type="password"
-        className="rounded p-2 mb-5"
+        className="p-5 mb-5"
         placeholder="Password"
         {...register("password", { required: true })}
       />
       {errors.password?.type === "required" && (
-        <p className="text-start mb-5 text-red-600">Password is required *</p>
+        <p className="text-start mb-5 text-red-600 bg-white">Password is required *</p>
       )}
 
       <button
-        className="p-2 mb-3 rounded text-white"
+        className="p-4 mb-10 text-white"
         type="submit"
       >
-        Log In
+        LOG IN
       </button>
 
-      <p>
-        Not registered yet? Click to{" "}
+      <p className="bg-white">
+      Don’t have an account?{" "}
         <Link
-          className="font-semibold"
+          className="font-semibold bg-white sign-up-link"
           href="/sign-up"
+
         >
-          Sign Up
+          SIGN UP
         </Link>
       </p>
     </form>
