@@ -57,10 +57,10 @@ label{
 /*SIGN UP FORM*/
 
 .sign-up-form{
-  position: absolute;
-  bottom: 0;
+  position: inherit;
+  /* bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   width: 100%;
   padding: 40px;
   border-top-left-radius: 20px;

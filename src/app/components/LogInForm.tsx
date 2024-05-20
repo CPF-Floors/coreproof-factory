@@ -2,8 +2,10 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function App() {
+
   interface IFormInput {
     email: string;
     password: string;
@@ -14,10 +16,28 @@ export default function App() {
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-  };
 
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error en la petición');
+      }
+  
+      const responseData = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <form
       className="flex flex-col text-center justify-center absolute bg-white bottom-0 right-0 left-0 log-in-form"

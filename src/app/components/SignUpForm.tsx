@@ -4,9 +4,15 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 
 export default function App() {
+
+
   interface IFormInput {
-    email: string;
-    password: string;
+      fullName: string,
+      email: string,
+      address: string,
+      business: string,
+      password: string,
+      phone: number
   }
 
   const {
@@ -14,30 +20,49 @@ export default function App() {
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error en la petición');
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
+  
 
   return (
     <>
       <form
-        className="flex flex-col text-center justify-center bg-white sign-up-form"
+        className="inherit flex flex-col text-center justify-center bg-white sign-up-form"
         onSubmit={handleSubmit(onSubmit)}
       >
         <label className="bg-white text-start my-2" htmlFor="">
-          NAME
+          FULL NAME
         </label>
         <input
           className="p-5 mb-5"
           placeholder=""
-          {...register("email", {
+          {...register("fullName", {
             required: "This field is required",
-            pattern: {
-              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-              message: "Please enter a valid e-mail",
-            },
           })}
         />
+
+
         <label className="bg-white text-start my-2" htmlFor="">
           EMAIL
         </label>
@@ -51,12 +76,36 @@ export default function App() {
               message: "Please enter a valid e-mail",
             },
           })}
+
         />
         {errors.email && (
           <p className="text-start mb-5 text-red-600 bg-white">
             {errors.email.message}
           </p>
         )}
+
+        <label className="bg-white text-start my-2" htmlFor="">
+          ADDRESS
+        </label>
+        <input
+          className="p-5 mb-5"
+          placeholder=""
+          {...register("address", {
+            required: "This field is required",
+          })}
+        />
+
+        <label className="bg-white text-start my-2" htmlFor="">
+          BUSSINESS NAME
+        </label>
+        <input
+          className="p-5 mb-5"
+          placeholder=""
+          {...register("business", {
+            required: "This field is required",
+          })}
+        />
+
         <label className="bg-white text-start my-2" htmlFor="">
           PASSWORD
         </label>
@@ -66,6 +115,7 @@ export default function App() {
           placeholder="Password"
           {...register("password", { required: true })}
         />
+
         {errors.password?.type === "required" && (
           <p className="text-start mb-5 text-red-600 bg-white">
             Password is required *
@@ -73,22 +123,19 @@ export default function App() {
         )}
 
         <label className="bg-white text-start my-2" htmlFor="">
-          REPEAT PASSWORD
+          PHONE NUMBER
         </label>
         <input
-          type="password"
+          type="number"
           className="p-5 mb-5"
-          placeholder="Repeat the Password"
-          {...register("password", { required: true })}
+          placeholder=""
+          {...register("phone", {
+            required: "This field is required",
+          })}
         />
-        {errors.password?.type === "required" && (
-          <p className="text-start mb-5 text-red-600 bg-white">
-            Password is required *
-          </p>
-        )}
 
         <button className="p-4 mb-10 text-white" type="submit">
-          LOG IN
+          REGISTER
         </button>
       </form>
     </>
