@@ -1,35 +1,35 @@
-"use client";
+"use client"
 
 import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 
-
 function Profile() {
-
   const [profileData, setProfileData] = useState(null);
   const token = Cookies.get('token')
 
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/auth/profile", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Error getting the profile");
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/auth/profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Error getting the profile");
+        }
+        const data = await response.json();
+        setProfileData(data);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
       }
-      const data = await response.json();
-      setProfileData(data);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    };
 
-  fetchProfile();
+    fetchProfile();
+  }, [token]);
 
   if (!profileData) {
     return (
