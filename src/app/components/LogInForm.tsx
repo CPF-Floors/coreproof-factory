@@ -3,6 +3,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
+
 
 export default function App() {
   const router = useRouter();
@@ -33,10 +35,12 @@ export default function App() {
       }
 
       const responseData = await response.json();
+      console.log(responseData)
+      Cookies.set('token', responseData.token);
 
-      // Verifica si estás en el cliente antes de usar el router
+     
       if (typeof window !== 'undefined') {
-        router.push('/');
+        router.push('/dashboard');
       }
     } catch (error) {
       console.error(error);
