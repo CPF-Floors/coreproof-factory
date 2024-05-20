@@ -2,10 +2,15 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
+import Image from "next/image";
+import Router, { useRouter } from "next/navigation";
+import { Toaster } from "@/components/ui/toaster"
+import { useToast } from "@/components/ui/use-toast";
 
 export default function App() {
 
-
+  const router = useRouter()
+  const { toast} = useToast()
   interface IFormInput {
       fullName: string,
       email: string,
@@ -37,7 +42,10 @@ export default function App() {
       }
   
       const responseData = await response.json();
-      console.log(responseData);
+      toast({
+        title: "You've been registered successfully!" ,
+      })
+      router.push('/log-in')
     } catch (error) {
       console.error(error);
     }
@@ -48,9 +56,13 @@ export default function App() {
   return (
     <>
       <form
-        className="inherit flex flex-col text-center justify-center bg-white sign-up-form"
+        className="flex flex-col text-center justify-center bg-white sign-up-form"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <div className="w-100 flex justify-center items-center bg-white"> 
+        <Image className="bg-white" src="/Group.svg" alt="Coreproof Logo" height={100} width={100}></Image>
+        </div>
+        <p className="font-bold underline bg-white my-5">Fill the required fields to complete your registry</p>
         <label className="bg-white text-start my-2" htmlFor="">
           FULL NAME
         </label>
