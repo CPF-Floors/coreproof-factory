@@ -9,6 +9,9 @@
   box-sizing: border-box;
   background-color: #151515 ;
 }
+.loading-container{
+  background-color: #314bce;
+}
 input{
   border: 1px solid rgb(197, 197, 197);
   outline: none;
