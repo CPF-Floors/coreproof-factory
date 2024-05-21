@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MenuBar from "../components/menuBar";
+import MenuBar from "../../components/ui/menuBar";
 
 export const metadata: Metadata = {
   title: "Profile",

@@ -1,4 +1,4 @@
-import LogInForm from "../components/LogInForm";
+import LogInForm from "../../components/LogInForm";
 import Image from "next/image";
 
 function LogInPage() {

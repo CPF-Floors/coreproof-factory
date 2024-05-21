@@ -1,10 +1,8 @@
-"use client";
+"use client"
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Cookies from 'js-cookie';
-
 
 export default function App() {
   const router = useRouter();
@@ -36,9 +34,9 @@ export default function App() {
 
       const responseData = await response.json();
       console.log(responseData)
-      Cookies.set('token', responseData.token);
 
-     
+      document.cookie = `token=${responseData.id}; path=/`;
+
       if (typeof window !== 'undefined') {
         router.push('/dashboard');
       }
@@ -48,7 +46,6 @@ export default function App() {
   };
   
   return (
-    
     <form
       className="flex flex-col text-center justify-center absolute bg-white bottom-0 right-0 left-0 log-in-form"
       onSubmit={handleSubmit(onSubmit)}
@@ -91,7 +88,6 @@ export default function App() {
         <Link
           className="font-semibold bg-white sign-up-link"
           href="/sign-up"
-
         >
           SIGN UP
         </Link>

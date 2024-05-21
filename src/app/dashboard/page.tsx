@@ -1,5 +1,5 @@
 import React from 'react'
-import menuBar from '../components/menuBar'
+import menuBar from '../../components/ui/menuBar'
 
 function Dashboard() {
   return (

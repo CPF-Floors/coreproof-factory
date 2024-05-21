@@ -1,11 +1,16 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import Cookies from 'js-cookie';
 
 function Profile() {
+
   const [profileData, setProfileData] = useState(null);
-  const token = Cookies.get('token')
+
+  const cookie = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('token='))
+
+  const token = cookie ? cookie.split('=')[1] : null;
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -14,7 +19,7 @@ function Profile() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         if (!response.ok) {
