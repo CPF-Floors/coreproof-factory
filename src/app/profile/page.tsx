@@ -38,8 +38,8 @@ function Profile() {
 
   if (!profileData) {
     return (
-      <div className="w-100 h-lvh flex justify-center items-center text-white">
-        Loading your profile...
+      <div className="w-100 h-lvh flex justify-center items-center">
+        <span className="loader"></span>
       </div>
     );
   }

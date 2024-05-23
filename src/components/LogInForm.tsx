@@ -22,6 +22,7 @@ export default function App() {
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -86,7 +87,7 @@ export default function App() {
       <p className="bg-white">
       Don’t have an account?{" "}
         <Link
-          className="font-semibold bg-white sign-up-link"
+          className="underline font-semibold bg-white sign-up-link"
           href="/sign-up"
         >
           SIGN UP
