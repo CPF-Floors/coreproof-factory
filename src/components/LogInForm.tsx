@@ -19,10 +19,11 @@ export default function App() {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    console.log(data)
+
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -36,7 +37,7 @@ export default function App() {
       const responseData = await response.json();
       console.log(responseData)
 
-      document.cookie = `token=${responseData.id}; path=/`;
+      document.cookie = `token=${responseData.token}; path=/`;
 
       if (typeof window !== 'undefined') {
         router.push('/dashboard');
