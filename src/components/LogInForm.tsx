@@ -3,9 +3,12 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster"
 
 export default function App() {
   const router = useRouter();
+  const { toast } = useToast()
 
   interface IFormInput {
     email: string;
@@ -40,7 +43,11 @@ export default function App() {
       document.cookie = `token=${responseData.token}; path=/`;
 
       if (typeof window !== 'undefined') {
+        
         router.push('/dashboard');
+        toast({
+          title: "Login succesfull" ,
+        })
       }
     } catch (error) {
       console.error(error);

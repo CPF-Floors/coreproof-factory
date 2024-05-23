@@ -38,7 +38,11 @@ export default function App() {
       });
   
       if (!response.ok) {
+        toast({
+          title: "Already registered" ,
+        })
         throw new Error('Error en la petición');
+
       }
   
       const responseData = await response.json();
@@ -47,7 +51,11 @@ export default function App() {
       })
       router.push('/log-in')
     } catch (error) {
+      toast({
+        title: "Connection Error" ,
+      })
       console.error(error);
+
     }
   };
   
