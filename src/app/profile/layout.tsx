@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MenuBar from "../../components/ui/menuBar";
+import GetProfileInfo from "@/components/GetProfileInfo";
 
 export const metadata: Metadata = {
   title: "Profile",
