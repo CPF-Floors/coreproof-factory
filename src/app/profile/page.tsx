@@ -11,7 +11,7 @@ function Profile() {
   
   return(
 
-    <GetProfileInfo  token={{ name: 'token', value: '$cookieStore.value'}}/> 
+    <h1>Profile</h1>
   )
 }
 
