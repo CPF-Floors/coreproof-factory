@@ -6,8 +6,7 @@
 *{
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  background-color: #151515 ;
+  box-sizing: border-box; ;
 }
 .loading-container{
   background-color: #314bce;
@@ -35,11 +34,16 @@ button{
 /*MENU BAR*/
 
 .menu-bar{
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /*LOG IN FORM*/
+
+.login-image-container{
+  background-color: #151515;
+}
 
 .log-in-form{
   border-top-left-radius:20px;
@@ -69,4 +73,13 @@ label{
 .sign-up-form{
   width: 100%;
   padding: 80px 40px;
+}
+
+
+/*ORDERS*/
+
+.orders-links{
+  border-bottom: 1px solid rgb(236, 236, 236);
+  padding: 30px 0;
+  box-shadow: rgba(149, 157, 165, 0.089) 0px 12px 24px;
 }

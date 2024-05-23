@@ -5,7 +5,7 @@ import Link from "next/link";
 function MenuBar() {
   return (
     
-    <div className="menu-bar bg-white w-100 absolute bottom-0 left-0 right-0 flex justify-between items-center px-6 py-4">
+    <div className="menu-bar bg-white w-100 absolute bottom-0 left-0 right-0 flex justify-between items-center px-6 py-2">
       <Link href="/dashboard">
         <Image
           className="bg-white"
