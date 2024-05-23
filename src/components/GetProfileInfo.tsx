@@ -1,6 +1,8 @@
 "use client"
 
-function GetProfileInfo() {
+
+function GetProfileInfo({{token}}) {
+
 
   // const fetchProfile = async () => {
   //   try {
@@ -22,6 +24,7 @@ function GetProfileInfo() {
   //   }
   // };
   // fetchProfile()
+
   return ( 
   <h1>Profile</h1>
  );
