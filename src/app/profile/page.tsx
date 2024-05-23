@@ -17,6 +17,7 @@ function Profile() {
       try {
         const response = await fetch("http://localhost:3000/auth/profile", {
           method: "GET",
+          mode: 'no-cors',
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
