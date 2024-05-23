@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -30,7 +29,6 @@ function Profile() {
       console.log(data);
     } catch (error) {
       console.error(error);
-      console.log(token)
     }
   };
 
@@ -57,7 +55,7 @@ function Profile() {
             alt="Back"
           ></Image>
         </Link>
-        <h2 className="font-semibold my-10 ">Profile</h2>
+        <h2 className="font-semibold my-10 ">Your Profile</h2>
       </div>
 
 
