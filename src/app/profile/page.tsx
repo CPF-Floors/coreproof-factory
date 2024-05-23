@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
+import GetProfileInfo from "@/components/GetProfileInfo";
 
-function GetProfileInfo() {
+function Profile() {
+
 
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
@@ -19,17 +21,15 @@ function GetProfileInfo() {
       }
       const data = await response.json();
       console.log(data)
+      
     } catch (error) {
       console.error(error);
-
-
     }
   };
   fetchProfile()
-
   return(
     <h1>Profile</h1>
   )
 }
 
-export default GetProfileInfo;
+export default Profile;

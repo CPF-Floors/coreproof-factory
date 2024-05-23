@@ -1,3 +1,5 @@
+"use client"
+
 function GetProfileInfo() {
   return ( 
   <h1>Profile</h1>
