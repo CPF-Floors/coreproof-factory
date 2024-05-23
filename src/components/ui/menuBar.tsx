@@ -16,10 +16,11 @@ function MenuBar() {
         ></Image>
       </Link>
 
-      <Link href="/dashboard">
+      
+      <Link href="/profile">
         <Image
           className="bg-white"
-          src="/Group8224.svg"
+          src="/Group8222.svg"
           width={30}
           height={30}
           alt="user icon"
@@ -46,10 +47,11 @@ function MenuBar() {
         ></Image>
       </Link>
 
-      <Link href="/profile">
+
+      <Link href="/dashboard">
         <Image
           className="bg-white"
-          src="/Group8222.svg"
+          src="/Group8224.svg"
           width={30}
           height={30}
           alt="user icon"

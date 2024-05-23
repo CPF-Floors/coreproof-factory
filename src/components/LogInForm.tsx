@@ -7,6 +7,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster"
 
 export default function App() {
+  
   const router = useRouter();
   const { toast } = useToast()
 
@@ -51,6 +52,7 @@ export default function App() {
       }
     } catch (error) {
       console.error(error);
+
     }
   };
   
