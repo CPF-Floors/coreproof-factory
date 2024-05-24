@@ -3,11 +3,28 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import LogOutButton from "@/components/LogOutButton";
 
 
 function GetProfileInfo({ token }: { token: React.ReactNode }) {
+
   const [newProfile, setNewProfile] = useState([]);
+
+  type newProfile = {
+    
+    _id: string,
+    fullName: string,
+    address: string,
+    businessName: string,
+    phoneNumber: string,
+    purchaseHistory: [],
+    email: string,
+    password: string,
+    role: string,
+    createdAt: string,
+    updatedAt: string,
+    __v: 0
+  
+  }
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -31,7 +48,7 @@ function GetProfileInfo({ token }: { token: React.ReactNode }) {
     };
     fetchProfile();
   }, [token]);
-  console.log(newProfile);
+  console.log(typeof newProfile);
 
   return (
     <>
