@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import GetProfileInfo from "@/components/GetProfileInfo";
+import GetProfileInfo from "./GetProfileInfo";
 
 function Profile() {
   const cookieStore = cookies();
@@ -7,7 +7,7 @@ function Profile() {
   console.log(cookieStore);
 
   return (
-    <GetProfileInfo cookieStore={{cookieStore}} /> 
+    <GetProfileInfo cookieStore={{cookieStore}} token={token}/> 
   );
 }
 
