@@ -7,7 +7,7 @@ function Profile() {
   console.log(cookieStore);
 
   return (
-    <GetProfileInfo cookieStore={{cookieStore}} token={{token}} /> 
+    <GetProfileInfo cookieStore={{cookieStore}} /> 
   );
 }
 

@@ -1,7 +1,7 @@
 "use client"
 import Profile from "../app/profile/page"
 
-function GetProfileInfo({token}) {
+function GetProfileInfo({cookieStore}){
 
 
   // const fetchProfile = async () => {
