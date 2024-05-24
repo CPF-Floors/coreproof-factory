@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+
 function GetProfileInfo({ token }: { token: React.ReactNode }) {
   const [newProfile, setNewProfile] = useState([]);
 
@@ -84,6 +85,13 @@ function GetProfileInfo({ token }: { token: React.ReactNode }) {
           <p>{newProfile.phoneNumber}</p>
         </div>
       </div>
+
+      <div className="flex items-center justify-end">
+        <p className="underline">Logout</p>
+        <Image src="./logout.svg" width={60} height={60} alt="user"></Image>
+      </div>
+
+
     </>
   );
 }
