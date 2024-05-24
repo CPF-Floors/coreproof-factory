@@ -64,6 +64,16 @@ button{
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 20;
+}
+.open-menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #314bce;
+  z-index: 10 !important;
 }
 
 /*LOG IN FORM*/

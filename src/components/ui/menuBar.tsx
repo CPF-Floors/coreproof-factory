@@ -1,63 +1,135 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function MenuBar() {
+  const [open, setOpen] = useState(false);
   return (
-    
-    <div className="menu-bar bg-white w-100 absolute bottom-0 left-0 right-0 flex justify-between items-center px-6 py-2">
-      <Link href="/dashboard">
-        <Image
-          className="bg-white"
-          src="/grid.svg"
-          width={30}
-          height={30}
-          alt="user icon"
-        ></Image>
-      </Link>
+    <>
+      <div className="menu-bar bg-white w-100 absolute bottom-0 left-0 right-0 flex justify-between items-center px-6 py-2">
+        <Link href="/dashboard">
+          <Image
+            className="bg-white"
+            src="/grid.svg"
+            width={30}
+            height={30}
+            alt="user icon"
+          ></Image>
+        </Link>
 
-      
-      <Link href="/profile">
-        <Image
-          className="bg-white"
-          src="/Group8222.svg"
-          width={30}
-          height={30}
-          alt="user icon"
-        ></Image>
-      </Link>
+        <Link href="/profile">
+          <Image
+            className="bg-white"
+            src="/Group8222.svg"
+            width={30}
+            height={30}
+            alt="user icon"
+          ></Image>
+        </Link>
 
-      <Link href="/orders">
-        <Image
-          className="bg-white"
-          src="/Group1322.svg"
-          width={60}
-          height={60}
-          alt="user icon"
-        ></Image>
-      </Link>
+        <Link href="/orders">
+          <Image
+            className="bg-white"
+            src="/Group1322.svg"
+            width={60}
+            height={60}
+            alt="user icon"
+          ></Image>
+        </Link>
 
-      <Link href="/dashboard">
-        <Image
-          className="bg-white"
-          src="/Group8223.svg"
-          width={30}
-          height={30}
-          alt="user icon"
-        ></Image>
-      </Link>
+        <Link href="/dashboard">
+          <Image
+            className="bg-white"
+            src="/Group8223.svg"
+            width={30}
+            height={30}
+            alt="user icon"
+          ></Image>
+        </Link>
 
+        <Link href="#">
+          <Image
+            className="bg-white"
+            src="/Group8224.svg"
+            width={30}
+            height={30}
+            alt="user icon"
+            onClick={() => setOpen(!open)}
+          ></Image>
+        </Link>
+      </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className="open-menu"
+            initial={{ opacity: 0, x: 500 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 500 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex flex-row items-center">
+              <Link href="/dashboard">
+                <Image
+                  className="m-5"
+                  src="/Back.svg"
+                  height="40"
+                  width="40"
+                  alt="Back"
+                  onClick={() => setOpen}
+                ></Image>
+              </Link>
+              <h2 className="font-semibold my-10 text-white">Menu</h2>
+            </div>
 
-      <Link href="/dashboard">
-        <Image
-          className="bg-white"
-          src="/Group8224.svg"
-          width={30}
-          height={30}
-          alt="user icon"
-        ></Image>
-      </Link>
-    </div>
+            <Link href="/profile">
+              <div className="p-1 bg-white m-5 rounded-2xl flex">
+                <Image
+                  src="./profileUser.svg"
+                  width={60}
+                  height={60}
+                  alt="user"
+                ></Image>
+                <div className="m-5">
+                  <p>Profile</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/profile">
+              <div className="p-1 bg-white m-5 rounded-2xl flex">
+                <Image
+                  src="./cart.svg"
+                  width={60}
+                  height={60}
+                  alt="user"
+                ></Image>
+                <div className="m-5">
+                  <p>Cart</p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/profile">
+              <div className="p-1 bg-white m-5 rounded-2xl flex">
+                <Image
+                  src="./not.svg"
+                  width={60}
+                  height={60}
+                  alt="user"
+                ></Image>
+                <div className="m-5">
+                  <p>Notifications</p>
+                </div>
+              </div>
+            </Link>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

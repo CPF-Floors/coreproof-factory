@@ -11,6 +11,7 @@ function Profile() {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   console.log(cookieStore);
+  
 
   return (
     <>

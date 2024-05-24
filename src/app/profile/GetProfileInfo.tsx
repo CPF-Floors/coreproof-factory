@@ -48,7 +48,7 @@ function GetProfileInfo({ token }: { token: React.ReactNode }) {
     };
     fetchProfile();
   }, [token]);
-  console.log(typeof newProfile);
+  console.log(newProfile);
 
   return (
     <>
