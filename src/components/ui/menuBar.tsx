@@ -61,6 +61,7 @@ function MenuBar() {
           ></Image>
         </Link>
       </div>
+
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -71,7 +72,7 @@ function MenuBar() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex flex-row items-center">
-              <Link href="/dashboard">
+              <Link href="#">
                 <Image
                   className="m-5"
                   src="/Back.svg"
@@ -81,7 +82,11 @@ function MenuBar() {
                   onClick={() => setOpen(!open)}
                 ></Image>
               </Link>
-              <h2 className="font-semibold my-10 text-white">Menu</h2>
+              <h2 className="font-semibold my-10 text-white underline">Menu</h2>
+            </div>
+
+            <div className="w-100 p-2 flex justify-center my-10">
+              <Image src='./Group(2).svg' height={180} width={180} alt="logo"></Image>
             </div>
 
             <Link href="/profile">

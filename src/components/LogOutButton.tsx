@@ -1,8 +1,11 @@
 "use client"
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-function LogOutButton({ token }: { token: React.ReactNode }) {
+function LogOutButton() {
+
+  const router = useRouter()
 
     const LogOut = async () => {
         try {
@@ -10,7 +13,6 @@ function LogOutButton({ token }: { token: React.ReactNode }) {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
             },
           });
   
@@ -18,6 +20,11 @@ function LogOutButton({ token }: { token: React.ReactNode }) {
             throw new Error("Error Login out");
           }
           const data = await response.json();
+          if (typeof window !== 'undefined') {
+        
+            router.push('/log-in');
+
+          }
         } catch (error) {
           console.error(error);
         }
