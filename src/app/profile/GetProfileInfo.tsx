@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import LogOutButton from "@/components/LogOutButton";
 
 
 function GetProfileInfo({ token }: { token: React.ReactNode }) {
@@ -85,12 +86,6 @@ function GetProfileInfo({ token }: { token: React.ReactNode }) {
           <p>{newProfile.phoneNumber}</p>
         </div>
       </div>
-
-      <div className="flex items-center justify-end">
-        <p className="underline">Logout</p>
-        <Image src="./logout.svg" width={60} height={60} alt="user"></Image>
-      </div>
-
 
     </>
   );
