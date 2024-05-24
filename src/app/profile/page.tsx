@@ -17,6 +17,7 @@ function Profile() {
     <>
       <GetProfileInfo token={token} />
       <LogOutButton />
+      
     </>
   );
 }

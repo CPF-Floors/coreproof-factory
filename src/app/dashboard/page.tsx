@@ -1,10 +1,7 @@
-import React from 'react'
-
-
-function Dashboard() {
-  return (
-    <p>This is the Dashboard</p>
-  )
+function ShowDashboard() {
+  return ( 
+    <p>Dashboard</p>
+   );
 }
 
-export default Dashboard
+export default ShowDashboard;
