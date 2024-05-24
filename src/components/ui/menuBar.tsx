@@ -78,7 +78,7 @@ function MenuBar() {
                   height="40"
                   width="40"
                   alt="Back"
-                  onClick={() => setOpen}
+                  onClick={() => setOpen(!open)}
                 ></Image>
               </Link>
               <h2 className="font-semibold my-10 text-white">Menu</h2>
