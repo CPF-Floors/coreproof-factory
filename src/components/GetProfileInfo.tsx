@@ -1,7 +1,7 @@
 "use client"
+import Profile from "../app/profile/page"
 
-
-function GetProfileInfo({{token}}) {
+function GetProfileInfo({token}) {
 
 
   // const fetchProfile = async () => {
