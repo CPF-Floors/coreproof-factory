@@ -37,9 +37,11 @@ const UserProfileComponent = () => {
   }, []);
 
   if (!profile) {
-    return <div className="h-lvh w-100 flex justify-center items-center">
-      <span className="loader"></span>
-    </div>;
+    return (
+      <div className="h-lvh w-100 flex justify-center items-center">
+        <span className="loader"></span>
+      </div>
+    );
   }
 
   return (
@@ -55,14 +57,23 @@ const UserProfileComponent = () => {
               alt="Back"
             ></Image>
           </Link>
-          <h2 className="font-semibold my-10 ">Your Profile</h2>
+          <div className="flex flex-col">
+            <h2 className="font-semibold my-10 ">Your Profile</h2>
+          </div>
         </div>
+
         <div className="px-10 py-5">
           <h2 className="text-lg font-bold">{profile.fullName}</h2>
           <p>{profile.businessName}</p>
           <p>Member since: {profile.createdAt}</p>
+          <Link href="/edit-profile">
+              <p className="underline">Edit</p>
+            </Link>
         </div>
       </div>
+
+
+
       <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
         <Image src="./mail.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
@@ -70,6 +81,7 @@ const UserProfileComponent = () => {
           <p>{profile.email}</p>
         </div>
       </div>
+
       <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
         <Image src="./phone.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
@@ -77,6 +89,7 @@ const UserProfileComponent = () => {
           <p>{profile.phoneNumber}</p>
         </div>
       </div>
+
       <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
         <Image src="./address.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
@@ -85,7 +98,6 @@ const UserProfileComponent = () => {
         </div>
       </div>
       <LogOutButton />
-      
     </>
   );
 };

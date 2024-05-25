@@ -28,9 +28,6 @@ function Orders() {
           Running
         </Link>
         <Link className="mx-5" href="#">
-          Lunch
-        </Link>
-        <Link className="mx-5" href="#">
           Completed
         </Link>
       </div>

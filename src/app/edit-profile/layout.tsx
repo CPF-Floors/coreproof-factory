@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MenuBar from "../../components/ui/menuBar";
 
 export const metadata: Metadata = {
-  title: "Profile",
+  title: "Edit Profile",
   description: "Coreproof Factory LLC",
 };
 
