@@ -1,12 +1,13 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { useForm } from 'react-hook-form';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useForm } from "react-hook-form";
+import Link from "next/link";
+import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
 
 function UpdateProfileForm() {
   const router = useRouter();
@@ -16,31 +17,39 @@ function UpdateProfileForm() {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const response = await fetch('http://localhost:3000/auth/profile', { credentials: 'include' });
+        const response = await fetch("http://localhost:3000/auth/profile", {
+          credentials: "include",
+        });
         const data = await response.json();
         setUserId(data.id);
       } catch (error) {
-        console.error('Profile user- Bad Request', error);
+        console.error("Profile user- Bad Request", error);
       }
     };
 
     getProfile();
   }, []);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  type data = string;
 
   const onSubmit = async (data) => {
     try {
       const response = await fetch(`http://localhost:3000/user/${userId}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        throw new Error('Error al actualizar el perfil');
+        throw new Error("Error al actualizar el perfil");
       }
 
       const responseData = await response.json();
@@ -52,7 +61,7 @@ function UpdateProfileForm() {
       });
 
       // Redirigir al usuario a la página de perfil
-      router.push('/profile');
+      router.push("/profile");
     } catch (error) {
       console.error(error);
     }
@@ -60,6 +69,9 @@ function UpdateProfileForm() {
 
   return (
     <>
+      <motion.div className="edit-profile-container"
+      initial={{x:500}}
+      animate={{x:0}}>
         <div className="flex flex-row items-center">
           <Link href="/profile">
             <Image
@@ -70,55 +82,72 @@ function UpdateProfileForm() {
               alt="Back"
             ></Image>
           </Link>
-          <h2 className="font-semibold my-10 ">Your Profile</h2>
+          <h2 className="font-semibold my-10 ">Edit Your Profile</h2>
         </div>
 
+        <form className="flex flex-col p-5" onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="text-lg text-center mb-5 font-bold">
+            Fill the Necesary fields that you need to update. (Email & Password
+            are required)
+          </h2>
+          <input
+            className="p-4 my-4"
+            placeholder="Enter New Name"
+            {...register("fullName")}
+          />
 
-        <form className='flex flex-col p-5' onSubmit={handleSubmit(onSubmit)}>
-      
-        
-        <input className='p-4 my-4' placeholder='Enter New Name' {...register("fullName")} />
-      
-      
-        
-        <input className='p-4 my-4' placeholder='Enter New Address' {...register("address")} />
-      
-      
-        
-        <input className='p-4 my-4' placeholder='Enter New Business Name' {...register("businessName")} />
-      
-      
-   
-        <input className='p-4 my-4' placeholder='Enter New Phone Number' {...register("phoneNumber")} />
-      
-      
- 
-        <input className='p-4 my-4' placeholder='Enter New Email (Or Current)' {...register("email", {
-          required: "* This field is required",
-          pattern: {
-            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-            message: "Please, enter a valid e-mail"
-          }
-        })} />
-        {errors.email && <p>{errors.email.message}</p>}
+          <input
+            className="p-4 my-4"
+            placeholder="Enter New Address"
+            {...register("address")}
+          />
 
-      
+          <input
+            className="p-4 my-4"
+            placeholder="Enter New Business Name"
+            {...register("businessName")}
+          />
 
-        <input className='p-4 my-4' placeholder='Your New Password (Or Current)' type="password" {...register("password", {
-          required: "* This field is required",
-          minLength: {
-            value: 8,
-            message: "Password must have 8 characters"
-          }
-        })} />
-        {errors.password && <p>{errors.password.message}</p>}
+          <input
+            className="p-4 my-4"
+            placeholder="Enter New Phone Number"
+            {...register("phoneNumber")}
+          />
 
-      <button className='p-4 text-white mt-5' type="submit">Update Profile</button>
-    </form>
+          <input
+            className="p-4 my-4"
+            placeholder="Enter New Email (Or Current)"
+            {...register("email", {
+              required: "* This field is required",
+              pattern: {
+                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "Please, enter a valid e-mail",
+              },
+            })}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
+
+          <input
+            className="p-4 my-4"
+            placeholder="Your New Password (Or Current)"
+            type="password"
+            {...register("password", {
+              required: "* This field is required",
+              minLength: {
+                value: 8,
+                message: "Password must have 8 characters",
+              },
+            })}
+          />
+          {errors.password && <p>{errors.password.message}</p>}
+
+          <button className="p-4 text-white mt-5" type="submit">
+            Update Profile
+          </button>
+        </form>
+      </motion.div>
     </>
-   
   );
 }
 
 export default UpdateProfileForm;
-

@@ -44,7 +44,9 @@ button{
   border: 5px solid #314bce;
   animation: prixClipFix 2s linear infinite ;
 }
-
+.logout-button{
+  margin-bottom: 120px ;
+}
 @keyframes rotate {
   100%   {transform: rotate(360deg)}
 }
@@ -61,6 +63,8 @@ button{
 /*MENU BAR*/
 
 .menu-bar{
+  position: fixed;
+  bottom: 0;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -137,4 +141,12 @@ label{
 }
 .profile-card{
   background-color: rgb(240, 240, 240);
+}
+.edit-profile-container{
+  background-color: #314bce;
+  color: white;
+  padding-bottom: 80px;
+}
+.edit-profile-container button{
+  background-color: #1c2a72;
 }

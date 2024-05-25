@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import LogOutButton from "@/components/LogOutButton";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface UserProfile {
   id: string;
@@ -67,36 +68,52 @@ const UserProfileComponent = () => {
           <p>{profile.businessName}</p>
           <p>Member since: {profile.createdAt}</p>
           <Link href="/edit-profile">
-              <p className="underline">Edit</p>
-            </Link>
+            <p className="underline">Edit</p>
+          </Link>
         </div>
       </div>
 
-
-
-      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+      <motion.div
+        className="p-1 px-5 profile-card m-5 rounded-2xl flex"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Image src="./mail.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
           <p className="font-bold text-lg">EMAIL</p>
           <p>{profile.email}</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+      <motion.div
+        className="p-1 px-5 profile-card m-5 rounded-2xl flex"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Image src="./phone.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
           <p className="font-bold text-lg">PHONE</p>
           <p>{profile.phoneNumber}</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+      <motion.div
+        className="p-1 px-5 profile-card m-5 rounded-2xl flex"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Image src="./address.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
           <p className="font-bold text-lg">ADDRESS</p>
           <p>{profile.address}</p>
         </div>
-      </div>
+      </motion.div>
       <LogOutButton />
     </>
   );
