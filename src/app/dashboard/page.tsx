@@ -29,7 +29,7 @@ const DashboadScreen = () => {
         const data: UserProfile = await response.json();
         setProfile(data);
       } catch (error) {
-        console.error("Hubo un error al obtener el perfil del usuario:", error);
+        console.error("User Profile / Bad Request", error);
       }
     };
 
