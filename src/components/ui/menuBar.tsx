@@ -104,7 +104,7 @@ function MenuBar() {
               </div>
             </Link>
 
-            <Link href="/profile">
+            <Link href="/orders">
               <div className="p-1 bg-white m-5 rounded-2xl flex">
                 <Image
                   src="./cart.svg"
@@ -113,7 +113,7 @@ function MenuBar() {
                   alt="user"
                 ></Image>
                 <div className="m-5">
-                  <p>Cart</p>
+                  <p>Orders</p>
                 </div>
               </div>
             </Link>

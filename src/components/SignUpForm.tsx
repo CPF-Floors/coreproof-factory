@@ -68,7 +68,7 @@ export default function App() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="w-100 flex justify-center items-center bg-white"> 
-        <Image className="bg-white" src="/Group.svg" alt="Coreproof Logo" height={100} width={100}></Image>
+        <Image src="/logoblue.svg" alt="Coreproof Logo" height={80} width={80}></Image>
         </div>
         <p className="font-bold underline bg-white my-5">Fill the required fields to complete your registry</p>
         <label className="bg-white text-start my-2" htmlFor="">

@@ -24,7 +24,7 @@ export default function App() {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     console.log(data)
-
+  
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
@@ -33,16 +33,17 @@ export default function App() {
         },
         body: JSON.stringify(data)
       });
-
+  
       if (!response.ok) {
-        throw new Error('Error en la petición');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error en la petición');
       }
-
+  
       const responseData = await response.json();
       console.log(responseData)
-
+  
       document.cookie = `token=${responseData.token}; path=/`;
-
+  
       if (typeof window !== 'undefined') {
         
         router.push('/dashboard');
@@ -52,7 +53,10 @@ export default function App() {
       }
     } catch (error) {
       console.error(error);
-
+      const message = (error as Error).message;
+      toast({
+        title: message,
+      });
     }
   };
   
