@@ -1,7 +1,12 @@
+import React from 'react'
+
+
 function ShowDashboard() {
-  return ( 
-    <p>Dashboard</p>
-   );
+  return (
+    <>
+      <div>ShowDashboard</div>
+    </>
+  )
 }
 
-export default ShowDashboard;
+export default ShowDashboard
