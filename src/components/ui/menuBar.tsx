@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import LogOutButton from "../LogOutButton";
 
 function MenuBar() {
   const [open, setOpen] = useState(false);
@@ -130,6 +131,8 @@ function MenuBar() {
                 </div>
               </div>
             </Link>
+
+            <LogOutButton />
 
           </motion.div>
         )}

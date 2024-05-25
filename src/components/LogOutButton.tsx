@@ -26,11 +26,11 @@ function LogOutButton() {
   };
 
   return (
-    <div className="flex items-center justify-end">
+    <div className="flex items-center justify-end text-white m-5 rounded-2xl logout-button">
       <p className="underline" onClick={() => logout()}>
         Logout
       </p>
-      <Image src="./logout.svg" width={60} height={60} alt="user"></Image>
+      <Image className="m-5" src="./logout.svg" width={30} height={30} alt="user"></Image>
     </div>
   );
 }

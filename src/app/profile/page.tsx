@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import LogOutButton from "@/components/LogOutButton";
+import Image from "next/image";
+import Link from "next/link";
 
 interface UserProfile {
   id: string;
@@ -35,26 +37,55 @@ const UserProfileComponent = () => {
   }, []);
 
   if (!profile) {
-    return <div>Cargando perfil...</div>;
+    return <div className="h-lvh w-100 flex justify-center items-center">
+      <span className="loader"></span>
+    </div>;
   }
 
   return (
     <>
-      <div>
-        <h2>Perfil de Usuario</h2>
-        <p>ID: {profile.id}</p>
-        <p>Email: {profile.email}</p>
-        <p>Nombre de usuario: {profile.username}</p>
-        <p>Nombre completo: {profile.fullName}</p>
-        <p>Dirección: {profile.address}</p>
-        <p>Nombre del negocio: {profile.businessName}</p>
-        <p>Número de teléfono: {profile.phoneNumber}</p>
-        <p>Creado en: {new Date(profile.createdAt).toLocaleDateString()}</p>
-        <p>
-          Actualizado en: {new Date(profile.updatedAt).toLocaleDateString()}
-        </p>
+      <div className="px-2 py-5 profile-header-container">
+        <div className="flex flex-row items-center">
+          <Link href="/dashboard">
+            <Image
+              className="m-5"
+              src="/Back.svg"
+              height="40"
+              width="40"
+              alt="Back"
+            ></Image>
+          </Link>
+          <h2 className="font-semibold my-10 ">Your Profile</h2>
+        </div>
+        <div className="px-10 py-5">
+          <h2 className="text-lg font-bold">{profile.fullName}</h2>
+          <p>{profile.businessName}</p>
+          <p>Member since: {profile.createdAt}</p>
+        </div>
+      </div>
+      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+        <Image src="./mail.svg" width={60} height={60} alt="user"></Image>
+        <div className="m-5">
+          <p className="font-bold text-lg">EMAIL</p>
+          <p>{profile.email}</p>
+        </div>
+      </div>
+      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+        <Image src="./phone.svg" width={60} height={60} alt="user"></Image>
+        <div className="m-5">
+          <p className="font-bold text-lg">PHONE</p>
+          <p>{profile.phoneNumber}</p>
+        </div>
+      </div>
+      <div className="p-1 px-5 profile-card m-5 rounded-2xl flex">
+        <Image src="./address.svg" width={60} height={60} alt="user"></Image>
+        <div className="m-5">
+          <p className="font-bold text-lg">ADDRESS</p>
+          <p>{profile.address}</p>
+        </div>
       </div>
       <LogOutButton />
+      
     </>
   );
 };
