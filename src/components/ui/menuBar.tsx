@@ -91,7 +91,7 @@ function MenuBar() {
             </div>
 
             <Link href="/profile">
-              <div className="p-1 bg-white m-5 rounded-2xl flex">
+              <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
                 <Image
                   src="./profileUser.svg"
                   width={60}
@@ -105,7 +105,7 @@ function MenuBar() {
             </Link>
 
             <Link href="/orders">
-              <div className="p-1 bg-white m-5 rounded-2xl flex">
+              <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
                 <Image
                   src="./cart.svg"
                   width={60}
@@ -119,7 +119,7 @@ function MenuBar() {
             </Link>
 
             <Link href="/profile">
-              <div className="p-1 bg-white m-5 rounded-2xl flex">
+              <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
                 <Image
                   src="./not.svg"
                   width={60}

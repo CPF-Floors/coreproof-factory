@@ -1,6 +1,31 @@
-import Link from "next/link";
-import Image from "next/image";
+'use client'
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
 function Orders() {
+  const [orders, setOrders] = useState([]);
+  const [tab, setTab] = useState('all');
+
+  const userId = 'user-id'; // Reemplaza esto con el ID del usuario actual
+
+  useEffect(() => {
+    let url = `http://localhost:3001/order/user/${userId}`;
+    if (tab !== 'all') {
+      url += `/${tab}`;
+    }
+
+    fetch(url, {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => setOrders(data))
+      .catch((error) => console.error(error));
+  }, [tab, userId]);
+  console.log(userId)
+
   return (
     <div className="h-lvh w-100 bg-white pt-5">
       <div className="flex flex-row items-center">
@@ -21,15 +46,29 @@ function Orders() {
         </Link>
       </div>
       <div className="orders-links w-100 text-center">
-        <Link className="mx-5" href="#">
+        <a className="mx-5" onClick={() => setTab('all')}>
           All
-        </Link>
-        <Link className="mx-5" href="#">
-          Running
-        </Link>
-        <Link className="mx-5" href="#">
+        </a>
+        <a className="mx-5" onClick={() => setTab('pending')}>
+          Pending
+        </a>
+        <a className="mx-5" onClick={() => setTab('in-process')}>
+          In Process
+        </a>
+        <a className="mx-5" onClick={() => setTab('completed')}>
           Completed
-        </Link>
+        </a>
+      </div>
+      <div>
+        {orders.length > 0 ? (
+          orders.map((order) => (
+            <div key={order.id} className='text-center'>
+              {/* Renderiza la información de la orden aquí */}
+            </div>
+          ))
+        ) : (
+          <p className='text-center'>No orders yet</p>
+        )}
       </div>
     </div>
   );

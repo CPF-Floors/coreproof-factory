@@ -45,11 +45,11 @@ const DashboadScreen = () => {
 
   return (
     <>
-      <motion.div className="px-2 py-5 profile-header-container"
+      <motion.div className="px-2 py-5 profile-header-container flex justify-center items-center shadow-2xl"
       initial={{y: -400}}
       animate={{y: 0}}
       transition={{duration:1}}>
-        <div className="px-10 py-5">
+        <div className="px-10 py-5 dashboard-data-name">
           <h2 className="text-lg font-bold">Welcome, {" " + profile.fullName}!</h2>
           <p>{profile.businessName}</p>
         </div>

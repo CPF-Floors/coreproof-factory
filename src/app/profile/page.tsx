@@ -66,7 +66,7 @@ const UserProfileComponent = () => {
           </div>
         </div>
 
-        <div className="px-10 py-5">
+        <div className="px-10 py-5 profile-data-name">
           <h2 className="text-lg font-bold">{profile.fullName}</h2>
           <p>{profile.businessName}</p>
           <p>Member since: {profile.createdAt}</p>
