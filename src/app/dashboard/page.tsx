@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import LogOutButton from "@/components/LogOutButton";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface UserProfile {
   id: string;
@@ -44,12 +45,15 @@ const DashboadScreen = () => {
 
   return (
     <>
-      <div className="px-2 py-5 profile-header-container">
+      <motion.div className="px-2 py-5 profile-header-container"
+      initial={{y: -400}}
+      animate={{y: 0}}
+      transition={{duration:1}}>
         <div className="px-10 py-5">
           <h2 className="text-lg font-bold">Welcome, {" " + profile.fullName}!</h2>
           <p>{profile.businessName}</p>
         </div>
-      </div>
+      </motion.div>
       <LogOutButton />
       
     </>

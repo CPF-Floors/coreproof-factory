@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -34,9 +34,10 @@ function UpdateProfileForm() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
-  type data = string;
+  const password = watch("password", "");
 
   const onSubmit = async (data) => {
     try {
@@ -71,7 +72,8 @@ function UpdateProfileForm() {
     <>
       <motion.div className="edit-profile-container"
       initial={{x:500}}
-      animate={{x:0}}>
+      animate={{x:0}}
+      transition={{duration:1}}>
         <div className="flex flex-row items-center">
           <Link href="/profile">
             <Image
@@ -91,31 +93,31 @@ function UpdateProfileForm() {
             are required)
           </h2>
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Enter New Name"
             {...register("fullName")}
           />
 
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Enter New Address"
             {...register("address")}
           />
 
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Enter New Business Name"
             {...register("businessName")}
           />
 
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Enter New Phone Number"
             {...register("phoneNumber")}
           />
 
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Enter New Email (Or Current)"
             {...register("email", {
               required: "* This field is required",
@@ -128,18 +130,34 @@ function UpdateProfileForm() {
           {errors.email && <p>{errors.email.message}</p>}
 
           <input
-            className="p-4 my-4"
+            className="p-4 my-4 text-black"
             placeholder="Your New Password (Or Current)"
             type="password"
             {...register("password", {
               required: "* This field is required",
               minLength: {
                 value: 8,
-                message: "Password must have 8 characters",
+                message: "Password must have at least 8 characters",
+              },
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
+                message: "Password must contain at least one number and one special character",
               },
             })}
           />
           {errors.password && <p>{errors.password.message}</p>}
+
+          <input
+            className="p-4 my-4 text-black"
+            placeholder="Confirm Your Password"
+            type="password"
+            {...register("confirmPassword", {
+              required: "* This field is required",
+              validate: value =>
+                value === password || "The passwords do not match",
+            })}
+          />
+          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
 
           <button className="p-4 text-white mt-5" type="submit">
             Update Profile

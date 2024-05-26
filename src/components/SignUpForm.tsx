@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
@@ -17,6 +17,7 @@ export default function App() {
       address: string,
       business: string,
       password: string,
+      confirmPassword: string,
       phone: number
   }
 
@@ -24,8 +25,10 @@ export default function App() {
     register,
     formState: { errors },
     handleSubmit,
+    watch,
   } = useForm<IFormInput>();
 
+  const password = watch("password", "");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -133,12 +136,40 @@ export default function App() {
           type="password"
           className="p-5 mb-5"
           placeholder="Password"
-          {...register("password", { required: true })}
+          {...register("password", { 
+            required: "This field is required",
+            minLength: {
+              value: 8,
+              message: "Password must have at least 8 characters"
+            },
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
+              message: "Password must contain at least one letter, one number, and be at least 8 characters long"
+            }
+          })}
         />
-
-        {errors.password?.type === "required" && (
+        {errors.password && (
           <p className="text-start mb-5 text-red-600 bg-white">
-            Password is required *
+            {errors.password.message}
+          </p>
+        )}
+
+        <label className="bg-white text-start my-2" htmlFor="">
+          CONFIRM PASSWORD
+        </label>
+        <input
+          type="password"
+          className="p-5 mb-5"
+          placeholder="Confirm Password"
+          {...register("confirmPassword", { 
+            required: "This field is required",
+            validate: value =>
+              value === password || "The passwords do not match"
+          })}
+        />
+        {errors.confirmPassword && (
+          <p className="text-start mb-5 text-red-600 bg-white">
+            {errors.confirmPassword.message}
           </p>
         )}
 

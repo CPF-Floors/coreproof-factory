@@ -8,6 +8,10 @@
   margin: 0;
   box-sizing: border-box; ;
 }
+::selection{
+  background-color: #314bce;
+  color: white;
+}
 .loading-container{
   background-color: #314bce;
 }

@@ -47,7 +47,10 @@ const UserProfileComponent = () => {
 
   return (
     <>
-      <div className="px-2 py-5 profile-header-container">
+      <motion.div className="px-2 py-5 profile-header-container"
+      initial={{y: -400}}
+      animate={{y: 0}}
+      transition={{duration: 1}}>
         <div className="flex flex-row items-center">
           <Link href="/dashboard">
             <Image
@@ -68,17 +71,17 @@ const UserProfileComponent = () => {
           <p>{profile.businessName}</p>
           <p>Member since: {profile.createdAt}</p>
           <Link href="/edit-profile">
-            <p className="underline">Edit</p>
+            <p className="my-5 bg-white w-3/12 rounded p-2 text-black text-center px-4 ">Edit</p>
           </Link>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         className="p-1 px-5 profile-card m-5 rounded-2xl flex"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.5 }}
       >
         <Image src="./mail.svg" width={60} height={60} alt="user"></Image>
         <div className="m-5">
