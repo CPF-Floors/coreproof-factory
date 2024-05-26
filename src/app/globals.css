@@ -48,9 +48,7 @@ button{
   border: 5px solid #314bce;
   animation: prixClipFix 2s linear infinite ;
 }
-.logout-button{
-  margin-bottom: 120px ;
-}
+
 @keyframes rotate {
   100%   {transform: rotate(360deg)}
 }
@@ -62,6 +60,11 @@ button{
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
 }
+.logout-button{
+  margin-bottom: 120px ;
+}
+
+
 /*------------------------*/
 
 /*MENU BAR*/
@@ -85,6 +88,10 @@ button{
 }
 .logout-button{
   background-color: #253897;
+}
+
+.open-menu-card{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 /*LOG IN FORM*/
@@ -143,6 +150,10 @@ label{
   border-bottom-right-radius: 18px;
   margin-bottom: 40px;
 }
+.profile-data-name{
+  background-color: #1c2a72;
+  border-radius: 18px;
+}
 .profile-card{
   background-color: rgb(240, 240, 240);
 }
@@ -153,4 +164,12 @@ label{
 }
 .edit-profile-container button{
   background-color: #1c2a72;
+}
+
+/*DASHBOARD*/
+
+.dashboard-data-name{
+  background-color: #1c2a72;
+  border-radius: 18PX;
+  width: 100%;
 }
