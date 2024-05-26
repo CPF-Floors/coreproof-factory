@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,12 @@ import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
 
+interface data {
+  id: string
+}
+
 function UpdateProfileForm() {
+
   const router = useRouter();
   const [userId, setUserId] = useState(null);
   const { toast } = useToast();
@@ -26,7 +31,6 @@ function UpdateProfileForm() {
         console.error("Profile user- Bad Request", error);
       }
     };
-
     getProfile();
   }, []);
 
@@ -54,12 +58,13 @@ function UpdateProfileForm() {
       }
 
       const responseData = await response.json();
+      toast({
+        title: responseData.message,
+      });
       console.log(responseData);
 
       // Mostrar notificación de éxito
-      toast({
-        title: "Profile updated successfully",
-      });
+
 
       // Redirigir al usuario a la página de perfil
       router.push("/profile");
@@ -70,10 +75,7 @@ function UpdateProfileForm() {
 
   return (
     <>
-      <motion.div className="edit-profile-container"
-      initial={{x:500}}
-      animate={{x:0}}
-      transition={{duration:1}}>
+      <motion.div className="edit-profile-container">
         <div className="flex flex-row items-center">
           <Link href="/profile">
             <Image
@@ -87,7 +89,13 @@ function UpdateProfileForm() {
           <h2 className="font-semibold my-10 ">Edit Your Profile</h2>
         </div>
 
-        <form className="flex flex-col p-5" onSubmit={handleSubmit(onSubmit)}>
+        <motion.form
+          className="flex flex-col p-5"
+          onSubmit={handleSubmit(onSubmit)}
+          initial={{ x: 500 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <h2 className="text-lg text-center mb-5 font-bold">
             Fill the Necesary fields that you need to update. (Email & Password
             are required)
@@ -141,7 +149,8 @@ function UpdateProfileForm() {
               },
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
-                message: "Password must contain at least one number and one special character",
+                message:
+                  "Password must contain at least one number and one special character",
               },
             })}
           />
@@ -153,7 +162,7 @@ function UpdateProfileForm() {
             type="password"
             {...register("confirmPassword", {
               required: "* This field is required",
-              validate: value =>
+              validate: (value) =>
                 value === password || "The passwords do not match",
             })}
           />
@@ -162,7 +171,7 @@ function UpdateProfileForm() {
           <button className="p-4 text-white mt-5" type="submit">
             Update Profile
           </button>
-        </form>
+        </motion.form>
       </motion.div>
     </>
   );

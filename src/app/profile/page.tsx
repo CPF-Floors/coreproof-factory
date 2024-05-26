@@ -48,9 +48,9 @@ const UserProfileComponent = () => {
   return (
     <>
       <motion.div className="px-2 py-5 profile-header-container"
-      initial={{y: -400}}
-      animate={{y: 0}}
-      transition={{duration: 1}}>
+        initial={{y: -400}}
+        animate={{y: 0}}
+        transition={{duration: 1}}>
         <div className="flex flex-row items-center">
           <Link href="/dashboard">
             <Image
@@ -118,6 +118,7 @@ const UserProfileComponent = () => {
         </div>
       </motion.div>
       <LogOutButton />
+      
     </>
   );
 };

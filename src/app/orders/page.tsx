@@ -4,13 +4,34 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-function Orders() {
-  const [orders, setOrders] = useState([]);
-  const [tab, setTab] = useState('all');
+interface Order {
+  _id: string;
+  status: string;
+}
 
-  const userId = 'user-id'; // Reemplaza esto con el ID del usuario actual
+function Orders() {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [tab, setTab] = useState('all');
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
+    const getProfile = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/auth/profile", {
+          credentials: "include",
+        });
+        const data = await response.json();
+        setUserId(data.id);
+      } catch (error) {
+        console.error("Profile user- Bad Request", error);
+      }
+    };
+    getProfile();
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+
     let url = `http://localhost:3001/order/user/${userId}`;
     if (tab !== 'all') {
       url += `/${tab}`;
@@ -21,10 +42,9 @@ function Orders() {
       credentials: 'include',
     })
       .then((response) => response.json())
-      .then((data) => setOrders(data))
+      .then((data: Order[]) => {setOrders(data); console.log(orders)})
       .catch((error) => console.error(error));
-  }, [tab, userId]);
-  console.log(userId)
+  }, [tab, userId, orders]);
 
   return (
     <div className="h-lvh w-100 bg-white pt-5">
@@ -62,7 +82,7 @@ function Orders() {
       <div>
         {orders.length > 0 ? (
           orders.map((order) => (
-            <div key={order.id} className='text-center'>
+            <div key={order._id} className='text-center'>
               {/* Renderiza la información de la orden aquí */}
             </div>
           ))
@@ -75,3 +95,4 @@ function Orders() {
 }
 
 export default Orders;
+

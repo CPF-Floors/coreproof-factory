@@ -132,6 +132,20 @@ function MenuBar() {
               </div>
             </Link>
 
+            <Link href="/search">
+              <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
+                <Image className="ml-4"
+                  src="./search.svg"
+                  width={40}
+                  height={40}
+                  alt="user"
+                ></Image>
+                <div className="m-5">
+                  <p>Search</p>
+                </div>
+              </div>
+            </Link>
+
             <LogOutButton />
 
           </motion.div>
