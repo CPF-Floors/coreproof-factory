@@ -7,8 +7,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface User {
+  id: string,
   fullName: string;
+  email: string
   businessName: string;
+  phoneNumber: string
 }
 
 function Search() {
@@ -18,7 +21,7 @@ function Search() {
   useEffect(() => {
     if (!query) return;
 
-    fetch(`http://localhost:3001/user?query=${query}`, {
+    fetch(`http://localhost:3000/user/query?query=${query}`, {
       method: "GET",
       credentials: "include",
     })
@@ -56,15 +59,17 @@ function Search() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by Name, Company Name..."
+          placeholder="Search users by Name, Company Name..."
         />
 
         <div>
           {users.length > 0 ? (
             users.map((user) => (
-              <div key={user.id}>
-                <p>{user.fullName}</p>
-                <p>{user.businessName}</p>
+              <div className="user-search-card p-3 my-5" key={user.id}>
+                <p className="m-2 text-lg font-bold">{user.fullName}</p>
+                <p className="m-2">{user.email}</p>
+                <p className="m-2">{user.businessName}</p>
+                <p className="m-2">{user.phoneNumber}</p>
               </div>
             ))
           ) : (

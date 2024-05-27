@@ -173,3 +173,10 @@ label{
   border-radius: 18PX;
   width: 100%;
 }
+
+/*SEARCH*/
+
+.user-search-card{
+  background-color: #f0f0f0;
+  border-radius: 12px;
+}
