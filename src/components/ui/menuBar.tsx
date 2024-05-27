@@ -34,7 +34,7 @@ function MenuBar() {
         <Link href="/orders">
           <Image
             className="bg-white"
-            src="/Group1322.svg"
+            src="/plus.svg"
             width={60}
             height={60}
             alt="user icon"

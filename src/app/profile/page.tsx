@@ -12,6 +12,7 @@ interface UserProfile {
   username: string;
   fullName: string;
   address: string;
+  img: string,
   businessName: string;
   phoneNumber: string;
   createdAt: string;
@@ -45,6 +46,8 @@ const UserProfileComponent = () => {
     );
   }
 
+  console.log(profile)
+
   return (
     <>
       <motion.div className="px-2 py-5 profile-header-container"
@@ -63,6 +66,9 @@ const UserProfileComponent = () => {
           </Link>
           <div className="flex flex-col">
             <h2 className="font-semibold my-10 ">Your Profile</h2>
+          </div>
+          <div>
+            <Image src="{profile.img}" alt="image" height={100} width={100}></Image>
           </div>
         </div>
 
