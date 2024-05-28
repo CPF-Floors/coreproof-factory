@@ -67,9 +67,6 @@ const UserProfileComponent = () => {
           <div className="flex flex-col">
             <h2 className="font-semibold my-10 ">Your Profile</h2>
           </div>
-          <div>
-            <Image src="{profile.img}" alt="image" height={100} width={100}></Image>
-          </div>
         </div>
 
         <div className="px-10 py-5 profile-data-name">

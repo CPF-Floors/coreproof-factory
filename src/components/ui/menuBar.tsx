@@ -90,6 +90,20 @@ function MenuBar() {
               <Image src='./Group(2).svg' height={180} width={180} alt="logo"></Image>
             </div>
 
+            <Link href="/products">
+              <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
+                <Image
+                  src="./cart.svg"
+                  width={60}
+                  height={60}
+                  alt="user"
+                ></Image>
+                <div className="m-5">
+                  <p>Products</p>
+                </div>
+              </div>
+            </Link>
+
             <Link href="/profile">
               <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
                 <Image

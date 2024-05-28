@@ -180,3 +180,25 @@ label{
   background-color: #f0f0f0;
   border-radius: 12px;
 }
+
+/*PRODUCTS*/
+
+.products-header-container{
+  background-color: #314bce;
+  color: white;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+.product-container{
+  padding-bottom: 120px;
+}
+.product-card{
+  background-color: #f0f0f0;
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+.search-input{
+  width: 100%;
+  margin: 20px 0;
+
+}
