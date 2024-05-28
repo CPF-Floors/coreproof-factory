@@ -23,14 +23,6 @@ function Products() {
       .then((data) => setProducts(data));
   }, []);
 
-  if (!products) {
-    return (
-      <div className="h-lvh w-100 flex justify-center items-center">
-        <span className="loader"></span>
-      </div>
-    );
-  }
-
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -38,6 +30,27 @@ function Products() {
       product.material.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.price.toString().includes(searchTerm)
   );
+
+  const addToCart = async (product: Product) => {
+    try {
+      const response = await fetch("http://localhost:3000/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ item: product }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al añadir el producto al carrito");
+      }
+
+      alert("Producto añadido al carrito con éxito");
+    } catch (error) {
+      const err = error as Error;
+      alert(err.message);
+    }
+  };
 
   return (
     <>
@@ -56,38 +69,38 @@ function Products() {
         </div>
       </div>
 
-      <div className="w-100 p-4">
+      <div className="w-100 flex justify-center p-4">
         <input
-          className="p-4 search-input"
+            className="search-input p-4"
           type="text"
-          placeholder="Search Products..."
+          placeholder="Search..."
           onChange={(event) => setSearchTerm(event.target.value)}
         />
       </div>
 
-      <div className="product-container">
+      <div>
         {filteredProducts.map((product, index) => (
-          <div className="product-card m-8 p-4 flex" key={index}>
-            <div>
+          <div className="product-card m-5 p-4 flex flex-col" key={index}>
             <div className="flex justify-center p-5">
               <Image
-                className="rounded mb-10"
                 src="/PROPOSITION.webp"
                 alt="product-image"
-                width={200}
-                height={200}
+                width={100}
+                height={100}
               ></Image>
             </div>
-            <div>
-              <h3 className="font-bold text-lg mb-1">{product.name}</h3>
-              <p className="mb-4">{product.description}</p>
-              <p className="font-bold">Price: ${product.price}</p>
-              <p className="font-bold">Stock: {product.stock}</p>
-            </div>
-            <div className="text-white w-100 flex justify-center my-5">
-                <button className="p-4">ADD TO CART</button>
-            </div>
-            </div>
+            <h3 className="font-bold text-lg mb-5 text-center">
+              {product.name}
+            </h3>
+            <p className="mb-5">{product.description}</p>
+            <p className="font-bold">Price: ${product.price}</p>
+            <p className="font-bold">Stock: {product.stock}</p>
+            <button
+              className="text-white p-4 my-10"
+              onClick={() => addToCart(product)}
+            >
+              ADD TO CART
+            </button>
           </div>
         ))}
       </div>
