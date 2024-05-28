@@ -8,10 +8,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function App() {
-
   const router = useRouter();
   const { toast } = useToast();
-  
+
   interface IFormInput {
     fullName: string;
     email: string;
@@ -20,7 +19,7 @@ export default function App() {
     password: string;
     confirmPassword: string;
     phone: number;
-    img: string;
+    img: File;
   }
 
   const {
@@ -33,13 +32,18 @@ export default function App() {
   const password = watch("password", "");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, (data as any)[key]);
+    });
+
     try {
       const response = await fetch("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -189,11 +193,10 @@ export default function App() {
           })}
         />
 
-        <label className="bg-white text-start my-2" htmlFor="">
-          URL IMAGE
-        </label>
         <input
+          name="profileImage"
           type="file"
+          accept="image/png, image/jpeg, image/jpg, image/gif"
           className="p-5 mb-5"
           placeholder=""
           {...register("img", {

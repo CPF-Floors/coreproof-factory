@@ -221,6 +221,8 @@ label{
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
   border: 1px solid rgb(212, 212, 212);
+  overflow: scroll;
+  padding-bottom: 80px;
 }
 .top-cart-container{
   width: 100%;

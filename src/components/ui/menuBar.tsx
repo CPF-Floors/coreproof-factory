@@ -84,7 +84,7 @@ function MenuBar() {
           ></Image>
         </Link>
 
-        <Link href="/orders">
+        <Link href="/products">
           <Image
             className="bg-white"
             src="/plus.svg"
@@ -226,30 +226,35 @@ function MenuBar() {
       </AnimatePresence>
 
       <AnimatePresence initial={false}>
-        {openCart && (
-          <motion.div
-            className="cart-container p-4"
-            initial={{ y: 900 }}
-            animate={{ y: 0 }}
-            exit={{ y: 900 }}
-            transition={{ duration: 1 }}
-          >
-            <div className="top-cart-container flex justify-center p-4">
-              <div className="top-cart"></div>
+  {openCart && (
+    <motion.div
+      className="cart-container p-4"
+      initial={{ y: 900 }}
+      animate={{ y: 0 }}
+      exit={{ y: 900 }}
+      transition={{ duration: 1 }}
+    >
+      <div className="top-cart-container flex justify-center p-4">
+        <div className="top-cart"></div>
+      </div>
+      <div className="cart-list">
+        {productCart && productCart.items && productCart.items.length > 0 ? (
+          productCart.items.map((item, index) => (
+            <div className="cart-card my-5 bg-white p-4" key={item._id}>
+              <h3 className="text-lg font-bold">{item.product.name}</h3>
+              <p>{item.product.description}</p>
+              <p className="font-bold">Price: ${item.product.price}</p>
+              <p className="font-bold">Quantity: {item.quantity}</p>
             </div>
-            <div className="cart-list">
-              {productCart?.items.map((item, index) => (
-                <div className="cart-card my-5 bg-white p-4" key={item._id}>
-                  <h3 className="text-lg font-bold">{item.product.name}</h3>
-                  <p>{item.product.description}</p>
-                  <p className="font-bold">Price: ${item.product.price}</p>
-                  <p className="font-bold">Quantity: {item.quantity}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+          ))
+        ) : (
+          <p className="text-center text-white font-smibold">Your Cart is Empty</p>
         )}
-      </AnimatePresence>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </>
   );
 }
