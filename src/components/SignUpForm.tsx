@@ -193,7 +193,7 @@ export default function App() {
           URL IMAGE
         </label>
         <input
-          type="text"
+          type="file"
           className="p-5 mb-5"
           placeholder=""
           {...register("img", {

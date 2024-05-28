@@ -7,6 +7,30 @@ import { motion } from "framer-motion";
 import LogOutButton from "../LogOutButton";
 import Products from "@/app/products/page";
 
+interface Product {
+  _id: string;
+  name: string;
+  productType: string;
+  material: string;
+  description: string;
+  price: number;
+  stock: number;
+}
+
+interface CartItem {
+  product: Product;
+  quantity: number;
+  _id: string;
+}
+
+interface Cart {
+  _id: string;
+  user: string;
+  items: CartItem[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 
 interface Product {
   _id: string;
@@ -21,31 +45,21 @@ interface Product {
 
 function MenuBar() {
   const [open, setOpen] = useState(false);
-  const [openCart, setOpenCart] = useState(false)
+  const [openCart, setOpenCart] = useState(false);
+  const [productCart, setProductCart] = useState<Cart | null>(null);
 
   useEffect(() => {
-    const Cart = async (product: Product) => {
-      try {
-        const response = await fetch("http://localhost:3000/cart/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ item: { id: product._id, quantity: 1 } }),
-          credentials: 'include'
-        });
-        console.log(response)
-        if (!response.ok) {
-          throw new Error("Error al añadir el producto al carrito");
-        }
-  
-        alert("Producto añadido al carrito con éxito");
-      } catch (error) {
-        const err = error as Error;
-        alert(err.message);
-      }
-    };
-  }, [openCart]);
+    fetch("http://localhost:3000/cart", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setProductCart(data));
+  }, []);
+
 
   return (
     <>
@@ -85,8 +99,8 @@ function MenuBar() {
             onClick={() => setOpenCart(!openCart)}
             className="bg-white"
             src="/menucart.svg"
-            width={30}
-            height={30}
+            width={27}
+            height={27}
             alt="user icon"
           ></Image>
         </Link>
@@ -126,8 +140,13 @@ function MenuBar() {
               <h2 className="font-semibold my-10 text-white underline">Menu</h2>
             </div>
 
-            <div className="w-100 p-2 flex justify-center my-10">
-              <Image src='./Group(2).svg' height={180} width={180} alt="logo"></Image>
+            <div className="w-100 p-2 flex justify-center my-20">
+              <Image
+                src="./Group(2).svg"
+                height={200}
+                width={200}
+                alt="logo"
+              ></Image>
             </div>
 
             <Link href="/products">
@@ -188,7 +207,8 @@ function MenuBar() {
 
             <Link href="/search">
               <div className="open-menu-card p-1 bg-white m-5 rounded-2xl flex">
-                <Image className="ml-4"
+                <Image
+                  className="ml-4"
                   src="./search.svg"
                   width={40}
                   height={40}
@@ -201,22 +221,32 @@ function MenuBar() {
             </Link>
 
             <LogOutButton />
-
           </motion.div>
         )}
       </AnimatePresence>
 
       <AnimatePresence initial={false}>
         {openCart && (
-          <motion.div className="cart-container"
-          initial={{y:900}}
-          animate={{y:0}}
-          exit={{y:900}}
-          transition={{duration:1}}>
+          <motion.div
+            className="cart-container p-4"
+            initial={{ y: 900 }}
+            animate={{ y: 0 }}
+            exit={{ y: 900 }}
+            transition={{ duration: 1 }}
+          >
             <div className="top-cart-container flex justify-center p-4">
               <div className="top-cart"></div>
             </div>
-            {/*RENDERIZAR CARRITO AQUÍ*/}
+            <div className="cart-list">
+              {productCart?.items.map((item, index) => (
+                <div className="cart-card my-5 bg-white p-4" key={item._id}>
+                  <h3 className="text-lg font-bold">{item.product.name}</h3>
+                  <p>{item.product.description}</p>
+                  <p className="font-bold">Price: ${item.product.price}</p>
+                  <p className="font-bold">Quantity: {item.quantity}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

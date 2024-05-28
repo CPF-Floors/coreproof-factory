@@ -26,7 +26,7 @@ function LogOutButton() {
   };
 
   return (
-    <div className="flex items-center justify-end text-white m-5 rounded-2xl logout-button">
+    <div className="flex items-center justify-end text-white m-5 my-10  rounded-2xl logout-button">
       <p className="underline" onClick={() => logout()}>
         Logout
       </p>

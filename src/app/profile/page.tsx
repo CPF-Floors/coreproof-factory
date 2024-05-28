@@ -46,8 +46,6 @@ const UserProfileComponent = () => {
     );
   }
 
-  console.log(profile)
-
   return (
     <>
       <motion.div className="px-2 py-5 profile-header-container"
