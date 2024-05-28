@@ -1,13 +1,52 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import LogOutButton from "../LogOutButton";
+import Products from "@/app/products/page";
+
+
+interface Product {
+  _id: string;
+  name: string;
+  productType: string;
+  material: string;
+  description: string;
+  price: number;
+  stock: number;
+  quantity: number;
+}
 
 function MenuBar() {
   const [open, setOpen] = useState(false);
+  const [openCart, setOpenCart] = useState(false)
+
+  useEffect(() => {
+    const Cart = async (product: Product) => {
+      try {
+        const response = await fetch("http://localhost:3000/cart/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ item: { id: product._id, quantity: 1 } }),
+          credentials: 'include'
+        });
+        console.log(response)
+        if (!response.ok) {
+          throw new Error("Error al añadir el producto al carrito");
+        }
+  
+        alert("Producto añadido al carrito con éxito");
+      } catch (error) {
+        const err = error as Error;
+        alert(err.message);
+      }
+    };
+  }, [openCart]);
+
   return (
     <>
       <div className="menu-bar bg-white w-100 absolute bottom-0 left-0 right-0 flex justify-between items-center px-6 py-2">
@@ -24,7 +63,7 @@ function MenuBar() {
         <Link href="/profile">
           <Image
             className="bg-white"
-            src="/Group8222.svg"
+            src="/menuuser.svg"
             width={30}
             height={30}
             alt="user icon"
@@ -41,10 +80,11 @@ function MenuBar() {
           ></Image>
         </Link>
 
-        <Link href="/dashboard">
+        <Link href="#">
           <Image
+            onClick={() => setOpenCart(!openCart)}
             className="bg-white"
-            src="/Group8223.svg"
+            src="/menucart.svg"
             width={30}
             height={30}
             alt="user icon"
@@ -162,6 +202,21 @@ function MenuBar() {
 
             <LogOutButton />
 
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence initial={false}>
+        {openCart && (
+          <motion.div className="cart-container"
+          initial={{y:900}}
+          animate={{y:0}}
+          exit={{y:900}}
+          transition={{duration:1}}>
+            <div className="top-cart-container flex justify-center p-4">
+              <div className="top-cart"></div>
+            </div>
+            {/*RENDERIZAR CARRITO AQUÍ*/}
           </motion.div>
         )}
       </AnimatePresence>

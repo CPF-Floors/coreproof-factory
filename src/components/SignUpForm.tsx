@@ -8,8 +8,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function App() {
+
   const router = useRouter();
   const { toast } = useToast();
+  
   interface IFormInput {
     fullName: string;
     email: string;
