@@ -16,6 +16,7 @@ interface UserProfile {
   phoneNumber: string;
   createdAt: string;
   updatedAt: string;
+  role: string
 }
 
 export interface Cart {
@@ -75,6 +76,8 @@ const DashboadScreen = () => {
         transition={{ duration: 1 }}
       >
         <div className="px-10 py-5 dashboard-data-name">
+          <h2 className="text-lg font-extrabold ">Dashboard</h2>
+          <p className="mt-2 mb-6">In this panel you can access your account details</p>
           <h2 className="text-lg font-bold">
             Welcome, {" " + profile.fullName}!
           </h2>
@@ -84,7 +87,7 @@ const DashboadScreen = () => {
 
       <div className="p-5 border-b-2">
         <h1 className="text-lg font-bold">Dashboard</h1>
-        <p>In this panel you can access your account details</p>
+
       </div>
 
       <motion.div 

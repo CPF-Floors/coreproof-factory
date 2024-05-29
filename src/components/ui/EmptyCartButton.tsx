@@ -4,6 +4,7 @@ import { Toaster } from "./toaster"
 import { useToast } from './use-toast';
 import { Button } from './button';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 function RemoveItemsButton() {
 
@@ -39,8 +40,9 @@ function RemoveItemsButton() {
   };
 
   return (
-    <button className='text-white px-8 p-4 m-5 bg-red-500' onClick={removeItems}>
-      Delete All Items
+    <button className='text-white p-5 m-5 bg-red-500' onClick={removeItems}>
+                  <Image src="./trash.svg" alt="trash" height={25} width={25}>
+            </Image>
     </button>
   );
 }

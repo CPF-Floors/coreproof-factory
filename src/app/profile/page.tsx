@@ -17,6 +17,7 @@ interface UserProfile {
   phoneNumber: string;
   createdAt: string;
   updatedAt: string;
+  role: string
 }
 
 const UserProfileComponent = () => {
@@ -30,6 +31,7 @@ const UserProfileComponent = () => {
         });
         const data: UserProfile = await response.json();
         setProfile(data);
+
       } catch (error) {
         console.error("Hubo un error al obtener el perfil del usuario:", error);
       }
@@ -116,6 +118,20 @@ const UserProfileComponent = () => {
         <div className="m-5">
           <p className="font-bold text-lg">ADDRESS</p>
           <p>{profile.address}</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="p-1 px-5 profile-card m-5 rounded-2xl flex"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Image src="./profileuser.svg" width={60} height={60} alt="user"></Image>
+        <div className="m-5">
+          <p className="font-bold text-lg">ROLE</p>
+          <p>{profile.role}</p>
         </div>
       </motion.div>
       <LogOutButton />
