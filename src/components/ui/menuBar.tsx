@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
@@ -44,22 +44,8 @@ interface Product {
 }
 
 function MenuBar() {
+
   const [open, setOpen] = useState(false);
-  const [openCart, setOpenCart] = useState(false);
-  const [productCart, setProductCart] = useState<Cart | null>(null);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/cart", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setProductCart(data));
-  }, []);
-
 
   return (
     <>
@@ -94,9 +80,8 @@ function MenuBar() {
           ></Image>
         </Link>
 
-        <Link href="#">
+        <Link href="/cart">
           <Image
-            onClick={() => setOpenCart(!openCart)}
             className="bg-white"
             src="/menucart.svg"
             width={27}
@@ -226,33 +211,7 @@ function MenuBar() {
       </AnimatePresence>
 
       <AnimatePresence initial={false}>
-  {openCart && (
-    <motion.div
-      className="cart-container p-4"
-      initial={{ y: 900 }}
-      animate={{ y: 0 }}
-      exit={{ y: 900 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="top-cart-container flex justify-center p-4">
-        <div className="top-cart"></div>
-      </div>
-      <div className="cart-list">
-        {productCart && productCart.items && productCart.items.length > 0 ? (
-          productCart.items.map((item, index) => (
-            <div className="cart-card my-5 bg-white p-4" key={item._id}>
-              <h3 className="text-lg font-bold">{item.product.name}</h3>
-              <p>{item.product.description}</p>
-              <p className="font-bold">Price: ${item.product.price}</p>
-              <p className="font-bold">Quantity: {item.quantity}</p>
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-white font-smibold">Your Cart is Empty</p>
-        )}
-      </div>
-    </motion.div>
-  )}
+ 
 </AnimatePresence>
 
     </>

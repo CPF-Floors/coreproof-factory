@@ -44,6 +44,7 @@ export default function App() {
           "Content-Type": "application/json",
         },
         body: formData,
+        credentials: "include"
       });
 
       if (!response.ok) {
@@ -194,7 +195,6 @@ export default function App() {
         />
 
         <input
-          name="profileImage"
           type="file"
           accept="image/png, image/jpeg, image/jpg, image/gif"
           className="p-5 mb-5"

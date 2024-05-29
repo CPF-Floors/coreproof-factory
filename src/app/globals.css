@@ -175,6 +175,17 @@ label{
   border-radius: 18PX;
   width: 100%;
 }
+.total-cart-items{
+  background-color: rgb(224, 222, 222);
+  padding: 40px 20px;
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  width: 40%;
+}
+.total-cart-items h2{
+  font-size: 40px;
+  font-weight: 800;
+}
 
 /*SEARCH*/
 
@@ -211,18 +222,8 @@ label{
 /*CART*/
 
 .cart-container{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 80vh;
-  background-color: #314bce;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  border: 1px solid rgb(212, 212, 212);
   overflow: scroll;
-  padding-bottom: 80px;
+  padding-bottom: 120px;
 }
 .top-cart-container{
   width: 100%;
@@ -235,5 +236,6 @@ label{
   border-radius: 18px;
 }
 .cart-card{
+  background-color: #314bce;
   border-radius: 18px;
 }

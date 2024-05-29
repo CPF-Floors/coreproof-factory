@@ -66,10 +66,10 @@ function Search() {
           {users.length > 0 ? (
             users.map((user) => (
               <div className="user-search-card p-3 my-5" key={user.id}>
-                <p className="m-2 text-lg font-bold">{user.fullName}</p>
-                <p className="m-2">{user.email}</p>
-                <p className="m-2">{user.businessName}</p>
-                <p className="m-2">{user.phoneNumber}</p>
+                <p className="m-2 text-lg font-bold">User Name: {user.fullName}</p>
+                <p className="m-2">Email: {user.email}</p>
+                <p className="m-2">Company: {user.businessName}</p>
+                <p className="m-2">Phone: {user.phoneNumber}</p>
               </div>
             ))
           ) : (
