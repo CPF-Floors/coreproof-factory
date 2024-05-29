@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
@@ -33,6 +33,7 @@ export interface Cart {
 function Cart() {
 
   const [cart, setCart] = useState<Cart | null>(null);
+  const [updateCount, setUpdateCount] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -48,9 +49,13 @@ function Cart() {
         setCart(data);
         console.log(data);
       });
-  }, []);
+  }, [updateCount]);
 
   console.log(cart);
+
+  const handleEmptyCart = () => {
+    setUpdateCount(prevCount => prevCount + 1);
+  }
 
   return (
     <>

@@ -206,7 +206,7 @@ label{
   padding-bottom: 120px;
 }
 .product-card{
-  background-color: #f0f0f0;
+  background-color: #e4e4e4;
   border-radius: 18px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
@@ -217,6 +217,117 @@ label{
   width: 100%;
   margin: 20px 0;
 
+}
+
+/*CAROUSEL*/
+
+.embla {
+  position: relative;
+  margin: 0 !important;
+  overflow: hidden;
+      button{
+          background-color: rgb(252, 252, 252);
+          color: black;
+          font-size: 20px;
+          margin: 40px 20px;
+          padding: 10px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+      }
+      a{
+          text-decoration: none;
+      }
+}
+.embla .add-to-cart{
+  background-color: #314bce;
+  color: white;
+}
+.embla__prev{
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  top: 38%;
+}
+
+.embla__next{
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: 38%;
+}
+
+.embla__container {
+  position: relative;
+  display: flex;
+}
+.embla__slide {
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 35%;
+  min-width: 0;
+  margin: 0px;
+  text-decoration: none;
+
+  h4{
+      color: white;
+      background-color: rgb(24, 24, 24);
+      padding: 10px 20px;
+      margin-top: 25px;
+      border-radius: 8px;
+  }
+  img{
+      max-width: 450px;
+      border-radius: 16px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+  h3{
+      font-size: 16px;
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+@media (max-width:1280px){
+  .embla{
+      .buttons{
+          top: 30%;
+      }
+      .embla__container{
+          .embla__slide{
+              flex: 0 0 50%
+          }
+      }
+  }
+}
+
+@media (max-width:1280px){
+  .embla{
+      margin: 40px 0;
+      .embla__container{
+          .embla__slide{
+              flex: 0 0 100%;
+              margin: 10px;
+              img{
+                  max-height: 300px;
+              }
+          }
+      }
+      .embla__next, .embla__prev{
+          top: 30%;
+      }
+  }
 }
 
 /*CART*/

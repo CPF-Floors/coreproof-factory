@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MenuBar from "../../components/ui/menuBar";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <>
         {children}
         <MenuBar />
+        <Toaster />
     </>
   );
 }
