@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { color, motion } from "framer-motion";
+import EmptyCartButton from "./ui/EmptyCartButton"
 
 interface Product {
   _id: string;
@@ -54,8 +55,9 @@ function Cart() {
   return (
     <>
       <div className="cart-container">
-        <div className="p-4 py-8 border-spacing-4 border">
+        <div className="p-4 py-8  flex w-100 items-center justify-between">
           <h2 className="font-bold">Your Items</h2>
+          <EmptyCartButton />
         </div>
         {cart &&
           cart.items.map((item, index) => (

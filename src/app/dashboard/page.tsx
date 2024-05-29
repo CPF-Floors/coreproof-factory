@@ -83,10 +83,15 @@ const DashboadScreen = () => {
       </motion.div>
 
       <div className="p-5 border-b-2">
-        <h1 className="text-lg font-bold">Your Dashboard</h1>
+        <h1 className="text-lg font-bold">Dashboard</h1>
+        <p>In this panel you can access your account details</p>
       </div>
 
-      <div className="order-cart-container p-5 flex items-center justify-evenly">
+      <motion.div 
+      initial={{opacity: 0}}
+      animate={{opacity:1}}
+      transition={{duration: 2}}
+      className="order-cart-container p-5 flex items-center justify-evenly">
         <div className="total-cart-items m-5 text-center">
           <h2>{cart?.items.length}</h2>
           <p>Total Items</p>
@@ -96,9 +101,9 @@ const DashboadScreen = () => {
         <div className="total-cart-items m-5 text-center">
           <h2>0</h2>
           <p>Total Orders</p>
-          <Link href="/orders">See Details</Link>
+          <Link className="underline" href="/orders">See Details</Link>
         </div>
-      </div>
+      </motion.div>
       <LogOutButton />
     </>
   );

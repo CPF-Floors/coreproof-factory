@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import MenuBar from "../../components/ui/menuBar";
-import VerifyToken from "../page";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <>
         {children}
+        <Toaster />
         <MenuBar />
     </>
   );

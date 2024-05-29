@@ -20,8 +20,10 @@ function CartDisplay() {
         <div className="flex flex-col">
           <h2 className="font-semibold my-10 ">Your Cart</h2>
         </div>
+        
       </div>
       <Cart />
+      
     </>
   );
 }
