@@ -77,7 +77,7 @@ const DashboadScreen = () => {
       >
         <div className="px-10 py-5 dashboard-data-name">
           <h2 className="text-lg font-extrabold ">Dashboard</h2>
-          <p className="mt-2 mb-6">In this panel you can access your account details</p>
+          <p className="mt-2 mb-6">In this panel you can access to your account details</p>
           <h2 className="text-lg font-bold">
             Welcome, {" " + profile.fullName}!
           </h2>

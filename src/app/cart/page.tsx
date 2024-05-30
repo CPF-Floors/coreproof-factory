@@ -1,7 +1,10 @@
+"use client"
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Cart from "@/components/Cart";
+import CreateOrderButton from "@/components/ui/CreateOrderButton";
 
 
 function CartDisplay() {
@@ -22,6 +25,7 @@ function CartDisplay() {
         </div>
         
       </div>
+      <CreateOrderButton />
       <Cart />
       
     </>
